@@ -1,6 +1,8 @@
 const cmdDict = {
-  pwd: process.cwd(),
+  pwd: require("./pwd.js").pwd,
+  ls: require("./ls.js").ls,
 };
+console.log(cmdDict);
 
 process.stdout.write("prompt > ");
 process.stdin.on("data", (data) => {
@@ -8,7 +10,7 @@ process.stdin.on("data", (data) => {
 
   process.stdout.write("You typed: " + cmd);
   if (cmdDict[cmd]) {
-    process.stdout.write("\n" + cmdDict[cmd]);
+    process.stdout.write("\n" + cmdDict[cmd]());
   }
   process.stdout.write("\nprompt > ");
 });
